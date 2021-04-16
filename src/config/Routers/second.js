@@ -3,13 +3,13 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import Home from "./../../pages/Home/home";
 import CreateBlog from "./../../pages/CreateBlog/createBlog";
 import DetailBlog from "../../pages/DetailBlog/detailBlog";
+import HeaderComponent from "../../components/header/headerComponent";
+import FooterComponent from "../../components/footer/footerComponent";
 
 const SecondRoutes = () => {
     return (
         <div>
-            <header>
-                <h1>Header</h1>
-            </header>
+            <HeaderComponent />
             <HashRouter>
                 <Switch>
                     <Route path="/create-blog">
@@ -23,9 +23,7 @@ const SecondRoutes = () => {
                     </Route>
                 </Switch>
             </HashRouter>
-            <footer>
-                <h6>Footer</h6>
-            </footer>
+            <FooterComponent />
         </div>
     );
 };
