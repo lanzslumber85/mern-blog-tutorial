@@ -1,9 +1,8 @@
 const express = require("express");
+const productRoutes = require("./src/routes/productRoutes");
 
 const app = express();
 
-app.use(() => {
-    console.log("Hello server...");
-    console.log("Hello again...");
-});
+app.use("/", productRoutes);
+
 app.listen(4000);
