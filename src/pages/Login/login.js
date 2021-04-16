@@ -78,7 +78,7 @@ class Login extends Component {
                         className="btn btn-primary btn-block"
                         onClick={e => this.submitForm(e)}
                     >
-                        Submit
+                        Login
                     </button>
                     <div className="forgot-password text-right">
                         Forgot password?
