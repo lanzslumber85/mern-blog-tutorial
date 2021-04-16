@@ -1,10 +1,10 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-import Home from "../../pages/Home/home";
 import Login from "../../pages/Login/login";
 import Register from "../../pages/Register/register";
+import SecondRoutes from "./second";
 
-const Routers = () => {
+const FirstRoutes = () => {
     return (
         <HashRouter>
             <Switch>
@@ -15,11 +15,11 @@ const Routers = () => {
                     <Register />
                 </Route>
                 <Route path="/">
-                    <Home />
+                    <SecondRoutes />
                 </Route>
             </Switch>
         </HashRouter>
     );
 };
 
-export default Routers;
+export default FirstRoutes;

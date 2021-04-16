@@ -1,7 +1,7 @@
-import Routers from "../config/Routers/routers";
+import FirstRoutes from "../config/Routers/first";
 
 const App = () => {
-    return <Routers />;
+    return <FirstRoutes />;
 };
 
 export default App;
