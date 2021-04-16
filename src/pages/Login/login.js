@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
     constructor() {
@@ -79,9 +80,12 @@ class Login extends Component {
                     >
                         Submit
                     </button>
-                    <p className="forgot-password text-right">
+                    <div className="forgot-password text-right">
                         Forgot password?
-                    </p>
+                    </div>
+                    <div className="not-member text-right">
+                        Not a member? <Link to="/register">Sign up</Link>
+                    </div>
                 </form>
             </div>
         );
