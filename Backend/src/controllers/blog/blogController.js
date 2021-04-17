@@ -1,7 +1,11 @@
+const { validate } = require("../../validator/validator");
+
 exports.createBlog = (req, res, next) => {
     const title = req.body.title;
     const image = "imageFile.png";
     const content = req.body.content;
+
+    validate(req);
 
     const result = {
         message: "Create Blog success!",
