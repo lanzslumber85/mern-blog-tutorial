@@ -3,6 +3,7 @@ const router = express.Router();
 const authController = require("../../controllers/auth/authController");
 const { registerBody } = require("../../validators/validators");
 
-router.post("/register-user", registerBody(), authController.registerUser);
+const validate = registerBody();
+router.post("/register-user", validate, authController.registerUser);
 
 module.exports = router;
