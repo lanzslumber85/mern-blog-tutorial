@@ -1,9 +1,10 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const authRoutes = require("./src/routes/auth/authRoutes");
 const blogRoutes = require("./src/routes/blog/blogRoutes");
-const bodyParser = require("body-parser");
 const { port } = require("./port");
+const db = require("./db");
 
 const app = express();
 
@@ -25,4 +26,6 @@ app.use((error, req, res, next) => {
     });
 });
 
-app.listen(port, () => console.log(`Server is listening at port ${port}...`));
+db.mongoDB();
+
+app.listen(port, () => console.log(`Server is LISTENING at port ${port}...`));
