@@ -4,6 +4,7 @@ const { postData } = require("../../crud/postData");
 const { getData } = require("../../crud/getData");
 const { getDataByID } = require("../../crud/getDataByID");
 const { updateData } = require("../../crud/updateData");
+const { deleteData } = require("../../crud/deleteData");
 
 exports.createBlog = (req, res, next) => {
     checkError(req);
@@ -36,4 +37,9 @@ exports.updateBlogByID = (req, res, next) => {
     checkErrorFile(req);
     const put = BlogModel;
     updateData(put, req, res, next);
+};
+
+exports.deleteBlogByID = (req, res, next) => {
+    const del = BlogModel;
+    deleteData(del, req, res, next);
 };

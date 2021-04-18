@@ -13,7 +13,7 @@ const updateData = (put, req, res, next) => {
         })
         .then(result => {
             res.status(200).json({
-                message: "Update Blog by ID success!",
+                message: "UPDATE Data success!",
                 data: result,
             });
         })
