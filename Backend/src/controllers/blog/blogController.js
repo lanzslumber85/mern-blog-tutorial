@@ -1,5 +1,9 @@
-const { checkError, checkErrorImage } = require("../../errors/errors");
-const Blog = require("../../models/createBlogModel");
+const {
+    checkError,
+    checkErrorImage,
+    checkData,
+} = require("../../errors/errors");
+const BlogModel = require("../../models/createBlogModel");
 
 exports.createBlog = (req, res, next) => {
     checkError(req);
@@ -9,7 +13,7 @@ exports.createBlog = (req, res, next) => {
     const image = req.file.path;
     const content = req.body.content;
 
-    const post = new Blog({
+    const post = new BlogModel({
         title,
         content,
         image,
@@ -31,11 +35,27 @@ exports.createBlog = (req, res, next) => {
 };
 
 exports.getAllBlogs = (req, res, next) => {
-    const get = Blog;
+    const get = BlogModel;
+
     get.find()
         .then(result => {
             res.status(200).json({
                 message: "GET Blog success!",
+                data: result,
+            });
+        })
+        .catch(err => next(err));
+};
+
+exports.getBlogByID = (req, res, next) => {
+    const get = BlogModel;
+
+    get.findById(req.params.postID)
+        .then(result => {
+            checkData(result);
+
+            res.status(200).json({
+                message: "GET Blog by ID success!",
                 data: result,
             });
         })

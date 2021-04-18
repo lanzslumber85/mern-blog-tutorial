@@ -12,11 +12,17 @@ exports.checkError = req => {
 };
 
 exports.checkErrorImage = req => {
-    const errors = validationResult(req);
-
     if (!req.file) {
         const err = new Error("You must upload an image!");
         err.code = 422;
         throw err;
+    }
+};
+
+exports.checkData = result => {
+    if (!result) {
+        const error = new Error("Data not found!");
+        error.code = 404;
+        throw error;
     }
 };

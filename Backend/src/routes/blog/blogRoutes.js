@@ -8,4 +8,6 @@ router.post("/create-blog", validate, blogController.createBlog);
 
 router.get("/get-blogs", blogController.getAllBlogs);
 
+router.get("/get-blog-by-id/:postID", blogController.getBlogByID);
+
 module.exports = router;
