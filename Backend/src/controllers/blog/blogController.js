@@ -1,4 +1,5 @@
 const { throwError } = require("../../errors/errors");
+const CreateBlog = require("../../models/createBlogModel");
 
 exports.createBlog = (req, res, next) => {
     const title = req.body.title;
@@ -7,22 +8,23 @@ exports.createBlog = (req, res, next) => {
 
     throwError(req);
 
-    const result = {
-        message: "Create Blog success!",
-        data: [
-            {
-                post_id: 001,
-                title,
-                image,
-                content,
-                created_at: "17/04/2021",
-                author: {
-                    uid: 1,
-                    name: "azman",
-                },
-            },
-        ],
-    };
-    res.status(201).json(result);
-    next();
+    const postBlog = new CreateBlog({
+        title,
+        content,
+        author: {
+            uid: 1,
+            name: "azman",
+        },
+    });
+
+    postBlog
+        .save()
+        .then(result => {
+            res.status(201).json({
+                message: "Create Blog success!",
+                data: result,
+            });
+            next();
+        })
+        .catch(err => console.log("err:", err));
 };
