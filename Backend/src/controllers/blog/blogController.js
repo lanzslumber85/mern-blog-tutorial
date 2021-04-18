@@ -1,4 +1,4 @@
-const { checkError, checkErrorImage } = require("../../errors/errors");
+const { checkError, checkErrorFile } = require("../../errors/errors");
 const BlogModel = require("../../models/createBlogModel");
 const { postData } = require("../../crud/postData");
 const { getData } = require("../../crud/getData");
@@ -7,7 +7,7 @@ const { updateData } = require("../../crud/updateData");
 
 exports.createBlog = (req, res, next) => {
     checkError(req);
-    checkErrorImage(req);
+    checkErrorFile(req);
 
     const post = new BlogModel({
         title: req.body.title,
@@ -33,8 +33,7 @@ exports.getBlogByID = (req, res, next) => {
 
 exports.updateBlogByID = (req, res, next) => {
     checkError(req);
-    checkErrorImage(req);
-
+    checkErrorFile(req);
     const put = BlogModel;
     updateData(put, req, res, next);
 };

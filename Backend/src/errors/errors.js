@@ -11,9 +11,9 @@ exports.checkError = req => {
     }
 };
 
-exports.checkErrorImage = req => {
+exports.checkErrorFile = req => {
     if (!req.file) {
-        const err = new Error("You must upload an image!");
+        const err = new Error("You must upload a file!");
         err.code = 422;
         throw err;
     }
