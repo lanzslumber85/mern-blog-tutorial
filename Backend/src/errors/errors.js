@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 
-const throwError = req => {
+exports.throwError = req => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -11,4 +11,12 @@ const throwError = req => {
     }
 };
 
-exports.throwError = throwError;
+exports.throwImageError = req => {
+    const errors = validationResult(req);
+
+    if (!req.file) {
+        const err = new Error("You must upload an image!");
+        err.code = 422;
+        throw err;
+    }
+};
