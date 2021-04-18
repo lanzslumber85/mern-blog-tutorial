@@ -1,15 +1,15 @@
-const { throwError, throwImageError } = require("../../errors/errors");
-const CreateBlog = require("../../models/createBlogModel");
+const { checkError, checkErrorImage } = require("../../errors/errors");
+const Blog = require("../../models/createBlogModel");
 
 exports.createBlog = (req, res, next) => {
-    throwError(req);
-    throwImageError(req);
+    checkError(req);
+    checkErrorImage(req);
 
     const title = req.body.title;
     const image = req.file.path;
     const content = req.body.content;
 
-    const postBlog = new CreateBlog({
+    const post = new Blog({
         title,
         content,
         image,
@@ -19,14 +19,25 @@ exports.createBlog = (req, res, next) => {
         },
     });
 
-    postBlog
-        .save()
+    post.save()
         .then(result => {
             res.status(201).json({
-                message: "Create Blog success!",
+                message: "CREATE Blog success!",
                 data: result,
             });
             next();
         })
         .catch(err => console.log("err:", err));
+};
+
+exports.getAllBlogs = (req, res, next) => {
+    const get = Blog;
+    get.find()
+        .then(result => {
+            res.status(200).json({
+                message: "GET Blog success!",
+                data: result,
+            });
+        })
+        .catch(err => next(err));
 };

@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 
-exports.throwError = req => {
+exports.checkError = req => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -11,7 +11,7 @@ exports.throwError = req => {
     }
 };
 
-exports.throwImageError = req => {
+exports.checkErrorImage = req => {
     const errors = validationResult(req);
 
     if (!req.file) {

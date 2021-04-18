@@ -1,11 +1,11 @@
-const { throwError } = require("../../errors/errors");
+const { checkError } = require("../../errors/errors");
 
 exports.registerUser = (req, res, next) => {
+    checkError(req);
+
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
-
-    throwError(req);
 
     const result = {
         message: "Registration success!",
