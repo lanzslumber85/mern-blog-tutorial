@@ -19,7 +19,7 @@ exports.checkErrorImage = req => {
     }
 };
 
-exports.checkData = result => {
+exports.checkDataError = result => {
     if (!result) {
         const error = new Error("Data not found!");
         error.code = 404;

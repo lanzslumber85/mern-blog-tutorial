@@ -1,7 +1,7 @@
 const {
     checkError,
     checkErrorImage,
-    checkData,
+    checkDataError,
 } = require("../../errors/errors");
 const BlogModel = require("../../models/createBlogModel");
 
@@ -9,14 +9,10 @@ exports.createBlog = (req, res, next) => {
     checkError(req);
     checkErrorImage(req);
 
-    const title = req.body.title;
-    const image = req.file.path;
-    const content = req.body.content;
-
     const post = new BlogModel({
-        title,
-        content,
-        image,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.file.path,
         author: {
             uid: 1,
             name: "azman",
@@ -52,7 +48,7 @@ exports.getBlogByID = (req, res, next) => {
 
     get.findById(req.params.postID)
         .then(result => {
-            checkData(result);
+            checkDataError(result);
 
             res.status(200).json({
                 message: "GET Blog by ID success!",

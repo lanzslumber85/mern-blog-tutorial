@@ -1,6 +1,6 @@
 const { body } = require("express-validator");
 
-exports.registerBody = () => {
+exports.registerUserValidator = () => {
     return [
         body("name")
             .isLength({ min: 3 })
@@ -12,7 +12,7 @@ exports.registerBody = () => {
     ];
 };
 
-exports.createBlogBody = () => {
+exports.createBlogValidator = () => {
     return [
         body("title")
             .isLength({ min: 4 })
