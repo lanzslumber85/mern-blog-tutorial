@@ -19,8 +19,8 @@ exports.checkErrorImage = req => {
     }
 };
 
-exports.checkDataError = result => {
-    if (!result) {
+exports.checkDataError = data => {
+    if (!data) {
         const error = new Error("Data not found!");
         error.code = 404;
         throw error;

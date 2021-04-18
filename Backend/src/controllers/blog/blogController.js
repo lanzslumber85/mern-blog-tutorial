@@ -1,9 +1,9 @@
-const {
-    checkError,
-    checkErrorImage,
-    checkDataError,
-} = require("../../errors/errors");
+const { checkError, checkErrorImage } = require("../../errors/errors");
 const BlogModel = require("../../models/createBlogModel");
+const { postData } = require("../../crud/postData");
+const { getData } = require("../../crud/getData");
+const { getDataByID } = require("../../crud/getDataByID");
+const { updateData } = require("../../crud/updateData");
 
 exports.createBlog = (req, res, next) => {
     checkError(req);
@@ -18,42 +18,23 @@ exports.createBlog = (req, res, next) => {
             name: "azman",
         },
     });
-
-    post.save()
-        .then(result => {
-            res.status(201).json({
-                message: "CREATE Blog success!",
-                data: result,
-            });
-            next();
-        })
-        .catch(err => console.log("err:", err));
+    postData(post, res, next);
 };
 
 exports.getAllBlogs = (req, res, next) => {
     const get = BlogModel;
-
-    get.find()
-        .then(result => {
-            res.status(200).json({
-                message: "GET Blog success!",
-                data: result,
-            });
-        })
-        .catch(err => next(err));
+    getData(get, res, next);
 };
 
 exports.getBlogByID = (req, res, next) => {
     const get = BlogModel;
+    getDataByID(get, req, res, next);
+};
 
-    get.findById(req.params.postID)
-        .then(result => {
-            checkDataError(result);
+exports.updateBlogByID = (req, res, next) => {
+    checkError(req);
+    checkErrorImage(req);
 
-            res.status(200).json({
-                message: "GET Blog by ID success!",
-                data: result,
-            });
-        })
-        .catch(err => next(err));
+    const put = BlogModel;
+    updateData(put, req, res, next);
 };
