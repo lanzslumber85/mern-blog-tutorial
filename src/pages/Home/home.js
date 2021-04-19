@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "reactstrap";
 import BlogComponent from "../../components/blog/blogComponent";
 import { useHistory } from "react-router";
+import Axios from "axios";
 
 const Home = () => {
+    useEffect(() => {
+        Axios.get("http://localhost:4000/v1/blog/get-blogs")
+            .then(result => {
+                console.log("data API? ", result);
+            })
+            .catch(err => {
+                console.log("error? ", err);
+            });
+    }, []);
+
     const history = useHistory();
 
     return (
