@@ -4,21 +4,31 @@ import BlogComponent from "../../components/blog/blogComponent";
 import { useHistory } from "react-router";
 import Axios from "axios";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
-  const [blogItems, setBlogItems] = useState([]);
+  // const [blogItems, setBlogItems] = useState([]);
+  const { blogItems, name } = useSelector(state => state);
 
   const stateGlobal = useSelector(state => state);
+  console.log("stateGlobal:", stateGlobal);
+
+  const dispatch = useDispatch();
+  console.log("dispatch:", dispatch);
 
   useEffect(() => {
     Axios.get("http://localhost:4000/v1/blog/get-blogs?page=2")
-      .then(result => {
-        // console.log("data API? ", result);
-        const responseAPI = result.data;
-        setBlogItems(responseAPI.data);
+      .then(response => {
+        console.log("response:", response);
+
+        const responseAPI = response.data;
+        console.log("responseAPI:", responseAPI);
+
+        console.log("responseAPI.data:", responseAPI.data);
+        dispatch({ type: "BLOG_ITEMS", blogItems: responseAPI.data });
       })
       .catch(err => {
-        console.log("error? ", err);
+        console.log("error message? ", err);
       });
   }, []);
 
@@ -27,7 +37,9 @@ const Home = () => {
   return (
     <div>
       <h3>Home Page</h3>
+
       <Button onClick={() => history.push("/create-blog")}>Create Blog</Button>
+
       {blogItems.map(item => {
         return (
           <BlogComponent
