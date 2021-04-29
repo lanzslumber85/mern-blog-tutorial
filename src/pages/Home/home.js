@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button } from "reactstrap";
 import BlogComponent from "../../components/blog/blogComponent";
 import { useHistory } from "react-router";
@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 const Home = () => {
-  // const [blogItems, setBlogItems] = useState([]);
   const { blogItems, name } = useSelector(state => state);
 
   const stateGlobal = useSelector(state => state);
