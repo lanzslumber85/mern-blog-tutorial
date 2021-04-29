@@ -1,13 +1,6 @@
-import { reduxReducer } from "../reducer/reduxReducer";
+import { reducer } from "../reducer";
 
 const { createStore } = require("redux");
-
-export const initialState = {
-  blogItems: [],
-  name: "Azman",
-};
-
-const reducer = reduxReducer();
 
 const store = createStore(reducer);
 

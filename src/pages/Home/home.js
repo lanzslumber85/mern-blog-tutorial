@@ -7,10 +7,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 const Home = () => {
-  const { blogItems, name } = useSelector(state => state);
-
-  const stateGlobal = useSelector(state => state);
-  console.log("stateGlobal:", stateGlobal);
+  const { blogItems } = useSelector(state => {
+    console.log("state.blogItemsReducer:", state.blogItemsReducer);
+    return state.blogItemsReducer;
+  });
 
   const dispatch = useDispatch();
   console.log("dispatch:", dispatch);
@@ -29,7 +29,7 @@ const Home = () => {
       .catch(err => {
         console.log("error message? ", err);
       });
-  }, []);
+  }, [dispatch]);
 
   const history = useHistory();
 
